@@ -18,4 +18,34 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>2.1.214</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>4.22.0</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>4.22.0</version>
+                <configuration>
+                    <url>jdbc:h2:file:./save_logs</url>
+                    <username>sa</username>
+                    <changeLogFile>src/main/resources/db/changelog/changeset-main.sql</changeLogFile>
+                    <driver>org.h2.Driver</driver>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Configuration>
+
+    <Appenders>
+        <JDBC name="jdbc" tableName="save_logs.jdbc_save">
+            <DriverManager connectionString="jdbc:h2:D:/repositories/log4j2-examples/jdbc-appender/save_logs"
+                           userName="sa" driverClassName="org.h2.Driver"/>
+
+            <Column name="line" pattern="%line"/>
+            <Column name="date" pattern="%d{HH:mm:ss dd-MM}"/>
+            <Column name="threadName" pattern="%threadName"/>
+            <Column name="logName" pattern="%logger"/>
+            <Column name="className" pattern="%class"/>
+            <Column name="methodName" pattern="%method"/>
+            <Column name="level" pattern="%level{WARN=Warning, DEBUG=Debug, ERROR=Error, FATAL=Fatal, INFO=Info}"/>
+            <Column name="message" pattern="%message"/>
+        </JDBC>
+    </Appenders>
+
+    <Loggers>
+        <Root level="debug">
+            <AppenderRef ref="jdbc"/>
+        </Root>
+    </Loggers>
+</Configuration>
